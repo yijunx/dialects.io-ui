@@ -1,7 +1,7 @@
 # dialects.io-ui
 
 
-# how to build a react app with tailwind css
+### how to build a react app with tailwind css
 Thanks to https://www.sitepoint.com/react-tailwind-css-build-site/
 
 
@@ -49,9 +49,9 @@ Thanks to https://www.sitepoint.com/react-tailwind-css-build-site/
 
 
 
-# how to run locally
+### how to run locally
 
 
 
-# how dockerize and deploy
+### how dockerize and deploy
 
