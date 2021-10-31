@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "62",
+    "meaning": "62 shi shenme",
+    "usage": "some example sentences here",
+    "contributer": [
+      {
+        "user_id": "user _id",
+        "user_name": "user name"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "haha",
+    "meaning": "62 shi shenme",
+    "usage": "some example sentences here",
+    "contributer": [
+      {
+        "user_id": "user _id",
+        "user_name": "user name"
+      }
+    ]
+  }
+]
