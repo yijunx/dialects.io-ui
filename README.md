@@ -46,6 +46,23 @@ Thanks to https://www.sitepoint.com/react-tailwind-css-build-site/
     @tailwind components;
     @tailwind utilities;
 
+    # for route and switch
+    yarn add react-router-dom
+
+    # for axios
+    yarn add axios
+
+    # install fontAwesome!
+
+    ```
+    yarn add @fortawesome/fontawesome-svg-core
+    yarn add @fortawesome/free-solid-svg-icons
+    yarn add @fortawesome/react-fontawesome
+    ```
+
+    # add react spring for some animations
+    yarn add react-spring
+
 
 
 

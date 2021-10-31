@@ -17,7 +17,6 @@ function App() {
 
   // use state..
   const [user, setUser] = useState(current_user);
-
   return (
     <div className="relative pb-10 min-h-screen">
       <UserContext.Provider value={{ user, setUser }}>
@@ -28,7 +27,7 @@ function App() {
               <Route exact path="/">
                 <Home />
               </Route>
-              <Route exact path="/email_verification">
+              <Route path="/email_verification">
                 <EmailVerification />
               </Route>
             </Switch>

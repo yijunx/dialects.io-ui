@@ -85,12 +85,25 @@ export const loginWithGoogle = (id_token, setUser, setError) => {
     });
 };
 
+export const emailVerification = (token, setError) => {
+  axios
+    .get(
+      process.env.REACT_APP_API_BASE_URL + `/email_verification?token=${token}`
+    )
+    .then((response) => {
+      setError("email verified");
+    })
+    .catch((e) => {
+      setError("email not verified");
+    });
+};
+
 export const register = (details, setError) => {
   console.log(details);
   if (
     (details.name === "") |
-    (details.email == "") |
-    (details.password == "")
+    (details.email === "") |
+    (details.password === "")
   ) {
     setError("Please Fill Up all fields");
   } else {

@@ -74,7 +74,7 @@ function LoginMenu({ closeMenu, setUser }) {
             <input
               type="submit"
               value="登陆"
-              className="text-gray-500 text-sm p-1 rounded w-full"
+              className="text-gray-500 text-sm p-1 rounded w-full bg-gray-100"
             />
           </div>
         </form>
