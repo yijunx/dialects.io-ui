@@ -5,11 +5,12 @@ import products from "../data/products.json";
 function Home() {
   return (
     <div className="py-4">
-      <div className="md:w-1/2 mx-auto">
+      {/* <div className="md:w-1/2 mx-auto">
         {products.map((product) => (
           <Product product={product} key={product.id} />
         ))}
-      </div>
+      </div> */}
+      this is home page... does not have anything yet
     </div>
   );
 }

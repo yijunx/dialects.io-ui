@@ -9,11 +9,14 @@ function Header() {
 
   return (
     <header className="bg-green-100 p-2 flex justify-between items-center h-10">
-      <div> dialects.io </div>
+      <div> yi ge wang zhan </div>
 
       <div>
         {user ? (
-          <LogoutControl setUser={setUser}></LogoutControl>
+          <div className="flex inline-block">
+            <div className="text-blue-500 mr-2">Hi {user.name}</div>
+            <LogoutControl setUser={setUser}></LogoutControl>
+          </div>
         ) : (
           <div className="flex inline-block">
             <RegisterControl></RegisterControl>

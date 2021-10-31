@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { emailVerification } from "../utils/LoginUtils";
 
 function useQuery() {
@@ -14,7 +14,15 @@ function EmailVerification() {
 
   emailVerification(query.get("token"), setError);
 
-  return <div>{error}</div>;
+  return (
+    <div>
+      <p>{error}</p>
+
+      <Link to="/" className="text-blue-200">
+        click here to go back to home page
+      </Link>
+    </div>
+  );
 }
 
 export default EmailVerification;
