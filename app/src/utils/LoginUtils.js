@@ -85,6 +85,37 @@ export const loginWithGoogle = (id_token, setUser, setError) => {
     });
 };
 
+export const register = (details, setError) => {
+  console.log(details);
+  if (
+    (details.name === "") |
+    (details.email == "") |
+    (details.password == "")
+  ) {
+    setError("Please Fill Up all fields");
+  } else {
+    axios
+      .post(process.env.REACT_APP_API_BASE_URL + "/register", details, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json", // <-- here
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.data.success) {
+          console.log("registered!");
+          setError("user registered, pls do email verification, pls pls pls.");
+        } else {
+          setError(response.data.message);
+        }
+      })
+      .catch((e) => {
+        setError(e.response.data.message);
+      });
+  }
+};
+
 export const login = (details, setUser, setError) => {
   console.log(details);
   axios

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
-import LoginMenu from "./LoginMenu";
+import RegisterMenu from "./RegisterMenu";
 import { useTransition, animated } from "react-spring";
 
-function LoginControl({ setUser }) {
-  const [showLoginMenu, setLoginMenu] = useState(false);
+function RegisterControl() {
+  const [showRegisterMenu, setRegisterMenu] = useState(false);
 
-  const maskTransitions = useTransition(showLoginMenu, {
+  const maskTransitions = useTransition(showRegisterMenu, {
     from: { position: "absolute", opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
   });
 
-  const menuTransitions = useTransition(showLoginMenu, {
+  const menuTransitions = useTransition(showRegisterMenu, {
     from: { position: "absolute", opacity: 0, transform: "translateX(100%)" },
     enter: { opacity: 1, transform: "translateX(0%)" },
     leave: { opacity: 0, transform: "translateX(100%)" },
@@ -22,15 +22,11 @@ function LoginControl({ setUser }) {
   return (
     <nav>
       <span className="text-xl">
-        {/* <FontAwesomeIcon
-          icon={faSignInAlt}
-          onClick={() => setLoginMenu(!showLoginMenu)}
-        /> */}
         <button
-          className="border text-sm text-gray-500 bg-white p-1 rounded"
-          onClick={() => setLoginMenu(!showLoginMenu)}
+          className="border text-sm text-gray-500 bg-white p-1 rounded mr-2"
+          onClick={() => setRegisterMenu(!showRegisterMenu)}
         >
-          登陆
+          注册
         </button>
         {maskTransitions(
           (styles, item) =>
@@ -38,7 +34,7 @@ function LoginControl({ setUser }) {
               <animated.div
                 style={styles}
                 className="bg-black-alpha-50 fixed top-0 left-0 w-full h-full z-50"
-                onClick={() => setLoginMenu(false)}
+                onClick={() => setRegisterMenu(false)}
               ></animated.div>
             )
         )}
@@ -49,10 +45,9 @@ function LoginControl({ setUser }) {
                 style={styles}
                 className="fixed bg-green-100 top-10 right-0 w-60 z-50 shadow p-3 m-2 rounded-md"
               >
-                <LoginMenu
-                  closeMenu={() => setLoginMenu(false)}
-                  setUser={setUser}
-                ></LoginMenu>
+                <RegisterMenu
+                  closeMenu={() => setRegisterMenu(false)}
+                ></RegisterMenu>
               </animated.div>
             )
         )}
@@ -61,4 +56,4 @@ function LoginControl({ setUser }) {
   );
 }
 
-export default LoginControl;
+export default RegisterControl;

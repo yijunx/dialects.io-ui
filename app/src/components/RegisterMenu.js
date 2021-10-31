@@ -1,42 +1,40 @@
 import React, { useState } from "react";
-import GoogleLogin from "react-google-login";
-import { login, loginWithGoogle } from "../utils/LoginUtils";
+import { register } from "../utils/LoginUtils";
 
-function LoginMenu({ closeMenu, setUser }) {
+function RegisterMenu({ closeMenu }) {
   const [error, setError] = useState("");
-  const [details, setDetails] = useState({ password: "", email: "" });
-  const loginSubmitHandler = (e) => {
+  const [details, setDetails] = useState({ password: "", email: "", name: "" });
+  const registerSubmitHandler = (e) => {
     // need to pass the close menu, close menu after login is successful
     e.preventDefault();
-    login(details, setUser, setError);
-  };
-  const googleLoginHandler = (response) => {
-    console.log("here is google response!!");
-    console.log(response.tokenId);
-    // need to pass the close menu, close menu after login is successful
-    loginWithGoogle(response.tokenId, setUser, setError);
+    register(details, setError);
     // closeMenu();
   };
 
   return (
     <div>
-      <div>
-        <GoogleLogin
-          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-          onSuccess={googleLoginHandler}
-          onFailure={googleLoginHandler}
-          cookiePolicy={"single_host_origin"}
-          buttonText="使用谷歌登陆"
-          className="w-full mb-3 h-10"
-        />
-      </div>
       <div className="border-1 bg-white w-full mb-1 shadow-sm rounded-md p-2">
-        <form onSubmit={loginSubmitHandler}>
+        <form onSubmit={registerSubmitHandler}>
           <div className="form-inner">
             <div className="form-group">
               {/* <div className="flex items-center text-black-500 text-sm w-full">
-                <div>注册用户登录</div>
+                <div>注册用户</div>
               </div> */}
+              <label htmlFor="name" className="text-gray-500 text-sm">
+                 昵称
+              </label>
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  onChange={(e) =>
+                    setDetails({ ...details, name: e.target.value })
+                  }
+                  value={details.name}
+                  className="border w-full p-1 text-sm rounded h-7"
+                />
+              </div>
               <label htmlFor="email" className="text-gray-500 text-sm">
                 电子邮箱
               </label>
@@ -73,7 +71,7 @@ function LoginMenu({ closeMenu, setUser }) {
             <div className="text-red-400 text-sm">{error}</div>
             <input
               type="submit"
-              value="登陆"
+              value="注册"
               className="text-gray-500 text-sm p-1 rounded w-full"
             />
           </div>
@@ -83,4 +81,4 @@ function LoginMenu({ closeMenu, setUser }) {
   );
 }
 
-export default LoginMenu;
+export default RegisterMenu;

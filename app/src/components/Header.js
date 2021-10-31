@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import LoginControl from "./LoginControl";
 import LogoutControl from "./LogoutControl";
+import RegisterControl from "./RegisterControl";
 import { UserContext } from "../UserContext";
 
 function Header() {
@@ -14,7 +15,10 @@ function Header() {
         {user ? (
           <LogoutControl setUser={setUser}></LogoutControl>
         ) : (
-          <LoginControl setUser={setUser}></LoginControl>
+          <div className="flex inline-block">
+            <RegisterControl></RegisterControl>
+            <LoginControl setUser={setUser}></LoginControl>
+          </div>
         )}
       </div>
     </header>
