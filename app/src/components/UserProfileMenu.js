@@ -1,14 +1,20 @@
 import React, { useState } from "react";
+import { patchUserDetail } from "../utils/UserUtils";
 
-function UserProfileMenu({ user }) {
+function UserProfileMenu({ userForShow, user, setUser }) {
   const [error, setError] = useState("");
   const [details, setDetails] = useState({
-    name: user.name,
+    name: userForShow.name,
   });
 
   const patchDetailsSubmitHandler = (e) => {
     e.preventDefault();
     console.log(details);
+    if (user.id === userForShow.id) {
+      patchUserDetail(userForShow.id, details, setError, setUser);
+    } else {
+      setError("you cannot update other people...");
+    }
   };
 
   return (
