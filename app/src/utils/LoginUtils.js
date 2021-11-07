@@ -64,8 +64,9 @@ export const loginWithGoogle = (id_token, setUser, setError) => {
       console.log(response);
       if (response.data.success) {
         setUser({
+          id: response.data.response.id,
           name: response.data.response.name,
-          email: response.data.response.email,
+          login_method: response.data.response.login_method,
         });
         console.log("logged in");
         // write to localstorage
@@ -142,8 +143,9 @@ export const login = (details, setUser, setError) => {
       console.log(response);
       if (response.data.success) {
         setUser({
+          id: response.data.response.id,
           name: response.data.response.name,
-          email: response.data.response.email,
+          login_method: response.data.response.login_method,
         });
         console.log("logged in");
         // write to localstorage
@@ -191,16 +193,4 @@ export const getCurrentUser = () => {
   } else {
     return null;
   }
-};
-
-export const axios_instance = () => {
-  // will not work with token with httpOnly set!!!
-  // A cookie with the HttpOnly attribute is inaccessible to the JavaScript Document.cookie API
-  // const cookies = new Cookies();
-  // const token = cookies.get("token");
-  return axios.create({
-    baseURL: process.env.REACT_APP_API_BASE_URL,
-    timeout: 3000,
-    // headers: { Authorization: "Bearer " + token },
-  });
 };

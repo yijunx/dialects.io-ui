@@ -1,6 +1,6 @@
 import "../App.css";
-import Product from "../components/Product";
-import products from "../data/products.json";
+// import Product from "../components/Product";
+// import products from "../data/products.json";
 
 function Home() {
   return (
