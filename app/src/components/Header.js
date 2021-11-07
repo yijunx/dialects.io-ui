@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import LoginControl from "./LoginControl";
 import LogoutControl from "./LogoutControl";
+import UserProfileControl from "./UserProfileControl";
 import RegisterControl from "./RegisterControl";
 import { UserContext } from "../UserContext";
 
@@ -9,12 +10,12 @@ function Header() {
 
   return (
     <header className="bg-green-100 p-2 flex justify-between items-center h-10">
-      <div> yi ge wang zhan </div>
+      <div> 一个网站 </div>
 
       <div>
         {user ? (
           <div className="flex inline-block">
-            <div className="text-blue-500 mr-2">Hi {user.name}</div>
+            <UserProfileControl user={user}></UserProfileControl>
             <LogoutControl setUser={setUser}></LogoutControl>
           </div>
         ) : (
