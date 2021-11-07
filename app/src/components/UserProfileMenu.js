@@ -10,10 +10,14 @@ function UserProfileMenu({ userForShow, user, setUser }) {
   const patchDetailsSubmitHandler = (e) => {
     e.preventDefault();
     console.log(details);
-    if (user.id === userForShow.id) {
-      patchUserDetail(userForShow.id, details, setError, setUser);
+    if (user == null) {
+      setError("you signed out");
     } else {
-      setError("you cannot update other people...");
+      if (user.id === userForShow.id) {
+        patchUserDetail(userForShow.id, details, setError, setUser);
+      } else {
+        setError("you cannot update other people");
+      }
     }
   };
 
