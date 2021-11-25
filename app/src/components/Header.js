@@ -13,7 +13,7 @@ function Header() {
     <header className="bg-green-100 p-2 flex justify-between items-center h-10">
       <div>
         <Link to="/" className="text-blue-500">
-          一个网站
+          一个方言的网站
         </Link>
       </div>
 
