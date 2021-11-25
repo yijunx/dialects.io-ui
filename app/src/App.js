@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./views/Home";
 import EmailVerification from "./views/EmailVerification";
+import ResetPassword from "./views/ResetPassword";
 import UserProfile from "./views/UserProfile";
 import { getCurrentUser } from "./utils/LoginUtils";
 import { UserContext } from "./UserContext";
@@ -31,6 +32,9 @@ function App() {
               </Route>
               <Route path="/email_verification">
                 <EmailVerification />
+              </Route>
+              <Route path="/reset_password">
+                <ResetPassword />
               </Route>
               <Route path="/users/:user_id">
                 <UserProfile />

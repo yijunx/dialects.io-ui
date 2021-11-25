@@ -99,6 +99,20 @@ export const emailVerification = (token, setError) => {
     });
 };
 
+export const resetPasswordVerification = (token, setError) => {
+  axios
+    .get(
+      process.env.REACT_APP_API_BASE_URL +
+        `/reset_password_verification?token=${token}`
+    )
+    .then((response) => {
+      setError("OK LETS RESET PASSWORD");
+    })
+    .catch((e) => {
+      setError("email link has issues");
+    });
+};
+
 export const register = (details, setError) => {
   console.log(details);
   if (
@@ -130,12 +144,65 @@ export const register = (details, setError) => {
   }
 };
 
-export const login = (details, setUser, setError) => {
-  if (details.email === "" || details.password === "") {
-    setError("请输入电子邮箱地址和密码");
+export const forgetPassword = (details, setError) => {
+  if (details.email === "") {
+    console.log(details.email);
+    setError("请输入电子邮箱地址即可");
   } else {
     axios
-      .post(process.env.REACT_APP_API_BASE_URL + "/login", details, {
+      .post(process.env.REACT_APP_API_BASE_URL + `/forget_password`, details, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json", // <-- here
+        },
+      })
+      .then((response) => {
+        setError(
+          "email send to you, pls click the link there to reset in xx hours"
+        );
+      })
+      .catch((e) => {
+        setError("email not verified");
+      });
+  }
+};
+
+export const resetPassword = (details, setError) => {
+  if (
+    details.new_password === "" ||
+    details.new_password !== details.new_password_again
+  ) {
+    console.log(details.email);
+    setError("两个密码不一样或者密码为空");
+  } else {
+    axios
+      .post(
+        process.env.REACT_APP_API_BASE_URL + `/reset_password_without_login`,
+        details,
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json", // <-- here
+          },
+        }
+      )
+      .then((response) => {
+        setError(
+          "email send to you, pls click the link there to reset in xx hours"
+        );
+      })
+      .catch((e) => {
+        setError("email not verified");
+      });
+  }
+};
+
+export const login = (details, setUser, setError) => {
+  if (details.email === "" || details.password === "") {
+    setError("请输入电子邮箱地址以便发送邮件来重新设置密码");
+  } else {
+    axios
+      .post(process.env.REACT_APP_API_BASE_URL + "/forget_password", details, {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json", // <-- here
@@ -149,7 +216,7 @@ export const login = (details, setUser, setError) => {
             name: response.data.response.name,
             login_method: response.data.response.login_method,
           });
-          console.log("logged in");
+          console.log("yeah forget is successful");
           // write to localstorage
           window.localStorage.setItem("id", response.data.response.id);
           window.localStorage.setItem("name", response.data.response.name);
@@ -158,7 +225,6 @@ export const login = (details, setUser, setError) => {
             response.data.response.login_method
           );
         } else {
-          console.log("dtail not match");
           setError(response.data.message);
         }
       })
