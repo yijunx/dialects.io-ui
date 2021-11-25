@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { register } from "../utils/LoginUtils";
 
 function RegisterMenu({ closeMenu }) {
-  const [error, setError] = useState("");
+  const [error, setError] = useState(
+    "最好使用Google直接登录，这样就不用额外记住一个密码啦"
+  );
   const [details, setDetails] = useState({ password: "", email: "", name: "" });
   const registerSubmitHandler = (e) => {
     // need to pass the close menu, close menu after login is successful
@@ -68,11 +70,11 @@ function RegisterMenu({ closeMenu }) {
                 />
               </div>
             </div>
-            <div className="text-red-400 text-sm">{error}</div>
+            <div className="text-gray-500 text-sm">{error}</div>
             <input
               type="submit"
               value="注册"
-              className="text-gray-500 text-sm p-1 rounded w-full bg-gray-100"
+              className="text-gray-500 text-sm p-1 rounded w-full bg-gray-100 mt-3"
             />
           </div>
         </form>

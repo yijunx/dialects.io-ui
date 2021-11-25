@@ -70,14 +70,17 @@ function LoginMenu({ closeMenu, setUser }) {
                 />
               </div>
             </div>
-            <div className="text-red-400 text-sm">{error}</div>
+            <div className="text-gray-500 text-sm">{error}</div>
             <input
               type="submit"
               value="登陆"
-              className="text-gray-500 text-sm p-1 rounded w-full bg-gray-100"
+              className="text-gray-500 text-sm p-1 rounded w-full bg-gray-100 mt-3"
             />
           </div>
         </form>
+        <button className="text-gray-500 text-sm p-1 rounded w-full bg-gray-100 mt-3">
+          忘记密码了 -_-!
+        </button>
       </div>
     </div>
   );
