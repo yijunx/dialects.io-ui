@@ -4,8 +4,8 @@ import "../App.css";
 
 function Home() {
   return (
-    <div className="py-4">
-      {/* <div className="md:w-1/2 mx-auto">
+    <div className="md:w-1/2 mx-auto bg-green-50 p-4 rounded-lg text-gray-600">
+      {/* <div className="">
         {products.map((product) => (
           <Product product={product} key={product.id} />
         ))}
