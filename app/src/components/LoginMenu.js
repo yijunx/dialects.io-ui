@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import GoogleLogin from "react-google-login";
-import { login, loginWithGoogle } from "../utils/LoginUtils";
+import { login, loginWithGoogle, forgetPassword } from "../utils/LoginUtils";
 
 function LoginMenu({ closeMenu, setUser }) {
   const [error, setError] = useState("");
@@ -16,6 +16,12 @@ function LoginMenu({ closeMenu, setUser }) {
     // need to pass the close menu, close menu after login is successful
     loginWithGoogle(response.tokenId, setUser, setError);
     // closeMenu();
+  };
+
+  const forgetPasswordSubmitHandler = (e) => {
+    // need to pass the close menu, close menu after login is successful
+    e.preventDefault();
+    forgetPassword(details, setError);
   };
 
   return (
@@ -78,7 +84,10 @@ function LoginMenu({ closeMenu, setUser }) {
             />
           </div>
         </form>
-        <button className="text-gray-500 text-sm p-1 rounded w-full bg-gray-100 mt-3">
+        <button
+          className="text-gray-500 text-sm p-1 rounded w-full bg-gray-100 mt-3"
+          onClick={forgetPasswordSubmitHandler}
+        >
           忘记密码了 -_-!
         </button>
       </div>

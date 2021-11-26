@@ -106,7 +106,7 @@ export const resetPasswordVerification = (token, setError) => {
         `/reset_password_verification?token=${token}`
     )
     .then((response) => {
-      setError("OK LETS RESET PASSWORD");
+      setError("");
     })
     .catch((e) => {
       setError("email link has issues");
@@ -147,7 +147,7 @@ export const register = (details, setError) => {
 export const forgetPassword = (details, setError) => {
   if (details.email === "") {
     console.log(details.email);
-    setError("请输入电子邮箱地址即可");
+    setError("请输入电子邮箱地址以便发送邮件来重新设置密码");
   } else {
     axios
       .post(process.env.REACT_APP_API_BASE_URL + `/forget_password`, details, {
@@ -199,10 +199,10 @@ export const resetPassword = (details, setError) => {
 
 export const login = (details, setUser, setError) => {
   if (details.email === "" || details.password === "") {
-    setError("请输入电子邮箱地址以便发送邮件来重新设置密码");
+    setError("请输入电子邮箱和密码");
   } else {
     axios
-      .post(process.env.REACT_APP_API_BASE_URL + "/forget_password", details, {
+      .post(process.env.REACT_APP_API_BASE_URL + "/login", details, {
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json", // <-- here

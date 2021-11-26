@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { resetPasswordVerification } from "../utils/LoginUtils";
+import { resetPasswordVerification, resetPassword } from "../utils/LoginUtils";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -9,11 +9,11 @@ function useQuery() {
 function ResetPassword() {
   let query = useQuery();
 
+  // console.log(query.get("token"));
+  const [error, setError] = useState("");
   // obtain the token in the page
   resetPasswordVerification(query.get("token"), setError);
 
-  // console.log(query.get("token"));
-  const [error, setError] = useState("");
   const [details, setDetails] = useState({
     new_password: "",
     new_password_again: "",
@@ -24,7 +24,7 @@ function ResetPassword() {
     // need to pass the close menu, close menu after login is successful
     e.preventDefault();
     //login(details, setUser, setError);
-    console.log(details);
+    resetPassword(details, setError);
   };
 
   // here the content depends on error
@@ -62,7 +62,7 @@ function ResetPassword() {
                 htmlFor="new_password_again"
                 className="text-gray-500 text-sm"
               >
-                新密码
+                新密码再来一遍
               </label>
               <div>
                 <input
@@ -91,7 +91,7 @@ function ResetPassword() {
       </div>
     );
   } else {
-    <div>{error}</div>;
+    content = <div>{error}</div>;
   }
   return (
     <div>
