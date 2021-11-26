@@ -12,7 +12,7 @@ function ResetPassword() {
   // console.log(query.get("token"));
   const [error, setError] = useState("");
   // obtain the token in the page
-  resetPasswordVerification(query.get("token"), setError);
+  // resetPasswordVerification(query.get("token"), setError);
 
   const [details, setDetails] = useState({
     new_password: "",

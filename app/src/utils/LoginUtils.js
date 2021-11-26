@@ -187,12 +187,10 @@ export const resetPassword = (details, setError) => {
         }
       )
       .then((response) => {
-        setError(
-          "email send to you, pls click the link there to reset in xx hours"
-        );
+        setError("password reset!!!");
       })
       .catch((e) => {
-        setError("email not verified");
+        setError("reset failed...");
       });
   }
 };
