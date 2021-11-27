@@ -3,7 +3,13 @@ import GoogleLogin from "react-google-login";
 import { login, loginWithGoogle, forgetPassword } from "../utils/LoginUtils";
 
 function LoginMenu({ closeMenu, setUser }) {
+  // well is this error or just msg?
+  // well this really should be message, and use success or not to decide the
+  // behavior!!
   const [error, setError] = useState("");
+
+  // do i need a success boolea to determine the behavior?
+
   const [details, setDetails] = useState({ password: "", email: "" });
   const loginSubmitHandler = (e) => {
     // need to pass the close menu, close menu after login is successful
