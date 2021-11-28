@@ -264,6 +264,7 @@ export const login = (details, setUser, setBackendMessage) => {
             success: true,
             message: "",
           });
+          // closeMenu();
         } else {
           setBackendMessage({
             success: response.data.success,

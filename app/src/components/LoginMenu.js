@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import GoogleLogin from "react-google-login";
 import { login, loginWithGoogle, forgetPassword } from "../utils/LoginUtils";
+import { UserContext } from "../UserContext";
 
-function LoginMenu({ closeMenu, setUser }) {
+function LoginMenu() {
+  const { setUser } = useContext(UserContext);
   console.log("this is login menu");
   const [backendMessage, setBackendMessage] = useState({
     success: false,

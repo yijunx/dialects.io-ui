@@ -7,7 +7,7 @@ import { UserContext } from "../UserContext";
 import { Link } from "react-router-dom";
 
 function Header() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <header className="bg-green-100 p-2 flex justify-between items-center h-10">
@@ -21,12 +21,12 @@ function Header() {
         {user ? (
           <div className="flex inline-block">
             <UserProfileControl user={user}></UserProfileControl>
-            <LogoutControl setUser={setUser}></LogoutControl>
+            <LogoutControl></LogoutControl>
           </div>
         ) : (
           <div className="flex inline-block">
             <RegisterControl></RegisterControl>
-            <LoginControl setUser={setUser}></LoginControl>
+            <LoginControl></LoginControl>
           </div>
         )}
       </div>

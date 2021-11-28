@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import LoginMenu from "./LoginMenu";
 import { useTransition, animated } from "react-spring";
 
-function LoginControl({ setUser }) {
+function LoginControl() {
   const [showLoginMenu, setLoginMenu] = useState(false);
 
   const maskTransitions = useTransition(showLoginMenu, {
@@ -50,8 +50,8 @@ function LoginControl({ setUser }) {
                 className="fixed bg-green-100 top-10 right-0 w-60 z-50 shadow p-3 m-2 rounded-md"
               >
                 <LoginMenu
-                  closeMenu={() => setLoginMenu(false)}
-                  setUser={setUser}
+                // closeMenu={() => setLoginMenu(false)}
+                // setUser={setUser}
                 ></LoginMenu>
               </animated.div>
             )
