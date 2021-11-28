@@ -19,7 +19,7 @@ export const CSRF = () => {
   }, []);
 };
 
-export const registerUserWithPassword = (details, setError) => {
+export const registerUserWithPassword = (details, setBackendMessage) => {
   console.log(details);
   axios
     .post(process.env.REACT_APP_API_BASE_URL + "/register", details, {
@@ -29,24 +29,20 @@ export const registerUserWithPassword = (details, setError) => {
       },
     })
     .then((response) => {
-      console.log(response);
-      if (response.data.success) {
-        // setUser({
-        //   name: response.data.response.name,
-        //   email: response.data.response.email,
-        // });
-        console.log("registered");
-        setError("an email is sent, pls click the link there");
-      } else {
-        setError(response.data.message);
-      }
+      setBackendMessage({
+        success: response.data.success,
+        message: response.data.message,
+      });
     })
     .catch((e) => {
-      console.log(e);
+      setBackendMessage({
+        success: false,
+        message: "Error connecting backend",
+      });
     });
 };
 
-export const loginWithGoogle = (id_token, setUser, setError) => {
+export const loginWithGoogle = (id_token, setUser, setBackendMessage) => {
   console.log(id_token);
   axios
     .post(
@@ -76,51 +72,57 @@ export const loginWithGoogle = (id_token, setUser, setError) => {
           "login_method",
           response.data.response.login_method
         );
+        setBackendMessage({
+          success: true,
+          message: "",
+        });
       } else {
         console.log("dtail not match");
-        setError("Details do not match!!!");
+        setBackendMessage({
+          success: false,
+          message: response.data.message,
+        });
       }
     })
     .catch((e) => {
       console.log(e);
+      setBackendMessage({
+        success: false,
+        message: "Error connecting to backend",
+      });
     });
 };
 
-export const emailVerification = (token, setError) => {
+export const emailVerification = (token, setBackendMessage) => {
   axios
     .get(
       process.env.REACT_APP_API_BASE_URL + `/email_verification?token=${token}`
     )
     .then((response) => {
-      setError("email verified");
+      setBackendMessage({
+        success: response.data.success,
+        message: response.data.message,
+      });
     })
     .catch((e) => {
-      setError("email not verified");
+      setBackendMessage({
+        success: false,
+        message: "Error connecting backend",
+      });
     });
 };
 
-export const resetPasswordVerification = (token, setError) => {
-  axios
-    .get(
-      process.env.REACT_APP_API_BASE_URL +
-        `/reset_password_verification?token=${token}`
-    )
-    .then((response) => {
-      setError("");
-    })
-    .catch((e) => {
-      setError("email link has issues");
-    });
-};
-
-export const register = (details, setError) => {
+export const register = (details, setBackendMessage) => {
   console.log(details);
   if (
     (details.name === "") |
     (details.email === "") |
     (details.password === "")
   ) {
-    setError("Please Fill Up all fields");
+    setBackendMessage({
+      success: false,
+      message: "请输入昵称，电子邮件和密码",
+    });
   } else {
     axios
       .post(process.env.REACT_APP_API_BASE_URL + "/register", details, {
@@ -131,23 +133,26 @@ export const register = (details, setError) => {
       })
       .then((response) => {
         console.log(response);
-        if (response.data.success) {
-          console.log("registered!");
-          setError("user registered, pls do email verification, pls pls pls.");
-        } else {
-          setError(response.data.message);
-        }
+        setBackendMessage({
+          success: response.data.success,
+          message: response.data.message,
+        });
       })
       .catch((e) => {
-        setError(e.response.data.message);
+        setBackendMessage({
+          success: false,
+          message: "Error connecting to backend",
+        });
       });
   }
 };
 
-export const forgetPassword = (details, setError) => {
+export const forgetPassword = (details, setBackendMessage) => {
   if (details.email === "") {
-    console.log(details.email);
-    setError("请输入电子邮箱地址以便发送邮件来重新设置密码");
+    setBackendMessage({
+      success: false,
+      message: "请输入电子邮箱地址以便发送邮件来重新设置密码",
+    });
   } else {
     axios
       .post(process.env.REACT_APP_API_BASE_URL + `/forget_password`, details, {
@@ -157,23 +162,29 @@ export const forgetPassword = (details, setError) => {
         },
       })
       .then((response) => {
-        setError(
-          "email send to you, pls click the link there to reset in xx hours"
-        );
+        setBackendMessage({
+          success: response.data.success,
+          message: response.data.message,
+        });
       })
-      .catch((e) => {
-        setError("email not verified");
+      .catch(() => {
+        setBackendMessage({
+          success: false,
+          message: "Error connecting to backend",
+        });
       });
   }
 };
 
-export const resetPassword = (details, setError) => {
+export const resetPassword = (details, setBackendMessage) => {
   if (
     details.new_password === "" ||
     details.new_password !== details.new_password_again
   ) {
-    console.log(details.email);
-    setError("两个密码不一样或者密码为空");
+    setBackendMessage({
+      success: false,
+      message: "两个密码不一样或者密码为空",
+    });
   } else {
     axios
       .post(
@@ -187,17 +198,26 @@ export const resetPassword = (details, setError) => {
         }
       )
       .then((response) => {
-        setError("password reset!!!");
+        setBackendMessage({
+          success: response.data.success,
+          message: response.data.message,
+        });
       })
       .catch((e) => {
-        setError("reset failed...");
+        setBackendMessage({
+          success: false,
+          message: "Error connecting to backend",
+        });
       });
   }
 };
 
-export const login = (details, setUser, setError) => {
+export const login = (details, setUser, setBackendMessage) => {
   if (details.email === "" || details.password === "") {
-    setError("请输入电子邮箱和密码");
+    setBackendMessage({
+      success: false,
+      message: "请输入电子邮箱和密码",
+    });
   } else {
     axios
       .post(process.env.REACT_APP_API_BASE_URL + "/login", details, {
@@ -222,14 +242,24 @@ export const login = (details, setUser, setError) => {
             "login_method",
             response.data.response.login_method
           );
+          setBackendMessage({
+            success: true,
+            message: "",
+          });
         } else {
-          setError(response.data.message);
+          setBackendMessage({
+            success: false,
+            message: response.data.message,
+          });
         }
       })
       .catch((e) => {
-        console.log(e.response.status);
-        console.log(e.response.data.message);
-        setError(e.response.data.message);
+        // console.log(e.response.status);
+        // console.log(e.response.data.message);
+        setBackendMessage({
+          success: false,
+          message: e.response.data.message,
+        });
       });
   }
 };

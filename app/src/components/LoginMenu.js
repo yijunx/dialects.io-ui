@@ -3,31 +3,40 @@ import GoogleLogin from "react-google-login";
 import { login, loginWithGoogle, forgetPassword } from "../utils/LoginUtils";
 
 function LoginMenu({ closeMenu, setUser }) {
-  // well is this error or just msg?
-  // well this really should be message, and use success or not to decide the
-  // behavior!!
-  const [error, setError] = useState("");
-
-  // do i need a success boolea to determine the behavior?
+  const [backendMessage, setBackendMessage] = useState({
+    success: false,
+    message: "",
+  });
 
   const [details, setDetails] = useState({ password: "", email: "" });
   const loginSubmitHandler = (e) => {
     // need to pass the close menu, close menu after login is successful
     e.preventDefault();
-    login(details, setUser, setError);
+    login(details, setUser, setBackendMessage);
+    if (backendMessage.success) {
+      // if the operation is success, close the menu
+      closeMenu();
+    }
   };
+
   const googleLoginHandler = (response) => {
     console.log("here is google response!!");
     console.log(response.tokenId);
     // need to pass the close menu, close menu after login is successful
-    loginWithGoogle(response.tokenId, setUser, setError);
-    // closeMenu();
+    loginWithGoogle(response.tokenId, setUser, setBackendMessage);
+
+    if (backendMessage.success) {
+      // if the operation is success, close the menu
+      closeMenu();
+    }
   };
 
   const forgetPasswordSubmitHandler = (e) => {
     // need to pass the close menu, close menu after login is successful
     e.preventDefault();
-    forgetPassword(details, setError);
+    forgetPassword(details, setBackendMessage);
+    // even success it does not close the menu automatically
+    // user need to see that message...
   };
 
   return (
@@ -82,7 +91,9 @@ function LoginMenu({ closeMenu, setUser }) {
                 />
               </div>
             </div>
-            <div className="text-gray-500 text-sm">{error}</div>
+            <div className="text-gray-500 text-sm">
+              {backendMessage.message}
+            </div>
             <input
               type="submit"
               value="登陆"

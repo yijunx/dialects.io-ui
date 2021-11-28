@@ -10,13 +10,16 @@ function EmailVerification() {
   let query = useQuery();
 
   // console.log(query.get("token"));
-  const [error, setError] = useState("");
+  const [backendMessage, setBackendMessage] = useState({
+    success: false,
+    message: "",
+  });
 
-  emailVerification(query.get("token"), setError);
+  emailVerification(query.get("token"), setBackendMessage);
 
   return (
     <div>
-      <p>{error}</p>
+      <p>{backendMessage.message}</p>
 
       <Link to="/" className="text-blue-200">
         click here to go back to home page

@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { patchUserDetail } from "../utils/UserUtils";
 
 function UserProfileMenu({ userForShow, user, setUser }) {
-  const [error, setError] = useState("");
+  const [backendMessage, setBackendMessage] = useState({
+    success: false,
+    message: "",
+  });
   const [details, setDetails] = useState({
     name: userForShow.name,
   });
@@ -11,12 +14,18 @@ function UserProfileMenu({ userForShow, user, setUser }) {
     e.preventDefault();
     console.log(details);
     if (user == null) {
-      setError("you signed out");
+      setBackendMessage({
+        success: false,
+        message: "抱歉您已经登出啦",
+      });
     } else {
       if (user.id === userForShow.id) {
-        patchUserDetail(userForShow.id, details, setError, setUser);
+        patchUserDetail(userForShow.id, details, setBackendMessage, setUser);
       } else {
-        setError("you cannot update other people");
+        setBackendMessage({
+          success: false,
+          message: "不能改别人的名字",
+        });
       }
     }
   };
@@ -43,7 +52,7 @@ function UserProfileMenu({ userForShow, user, setUser }) {
                 />
               </div>
             </div>
-            <div className="text-red-400 text-sm">{error}</div>
+            <div className="text-red-400 text-sm">{backendMessage.message}</div>
             <input
               type="submit"
               value="update"
