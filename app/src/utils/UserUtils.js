@@ -29,8 +29,8 @@ export const patchUserDetail = (
       })
       .catch((e) => {
         setBackendMessage({
-          success: false,
-          message: "Error Connecting Backend",
+          success: e.response.data.success,
+          message: e.response.data.message,
         });
       });
   }

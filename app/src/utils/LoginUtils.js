@@ -36,8 +36,8 @@ export const registerUserWithPassword = (details, setBackendMessage) => {
     })
     .catch((e) => {
       setBackendMessage({
-        success: false,
-        message: "Error connecting backend",
+        success: e.response.data.success,
+        message: e.response.data.message,
       });
     });
 };
@@ -85,10 +85,9 @@ export const loginWithGoogle = (id_token, setUser, setBackendMessage) => {
       }
     })
     .catch((e) => {
-      console.log(e);
       setBackendMessage({
-        success: false,
-        message: "Error connecting to backend",
+        success: e.response.data.success,
+        message: e.response.data.message,
       });
     });
 };
@@ -106,8 +105,8 @@ export const emailVerification = (token, setBackendMessage) => {
     })
     .catch((e) => {
       setBackendMessage({
-        success: false,
-        message: "Error connecting backend",
+        success: e.response.data.success,
+        message: e.response.data.message,
       });
     });
 };
@@ -140,8 +139,8 @@ export const register = (details, setBackendMessage) => {
       })
       .catch((e) => {
         setBackendMessage({
-          success: false,
-          message: "Error connecting to backend",
+          success: e.response.data.success,
+          message: e.response.data.message,
         });
       });
   }
@@ -167,10 +166,10 @@ export const forgetPassword = (details, setBackendMessage) => {
           message: response.data.message,
         });
       })
-      .catch(() => {
+      .catch((e) => {
         setBackendMessage({
-          success: false,
-          message: "Error connecting to backend",
+          success: e.response.data.success,
+          message: e.response.data.message,
         });
       });
   }
@@ -205,8 +204,8 @@ export const resetPassword = (details, setBackendMessage) => {
       })
       .catch((e) => {
         setBackendMessage({
-          success: false,
-          message: "Error connecting to backend",
+          success: e.response.data.success,
+          message: e.response.data.message,
         });
       });
   }
@@ -257,7 +256,7 @@ export const login = (details, setUser, setBackendMessage) => {
         // console.log(e.response.status);
         // console.log(e.response.data.message);
         setBackendMessage({
-          success: false,
+          success: e.response.data.message,
           message: e.response.data.message,
         });
       });
