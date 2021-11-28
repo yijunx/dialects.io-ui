@@ -15,7 +15,7 @@ function App() {
   // CSRF();
   // get current user
   const current_user = getCurrentUser();
-  console.log("curent user is");
+  console.log("curent user is shown below");
   console.log(current_user);
 
   // use state..

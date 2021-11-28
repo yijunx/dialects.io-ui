@@ -7,7 +7,11 @@ module.exports = {
   // or 'media' or 'class', for the sake of the simplicity,
   // we will keep the fark mode based on users's OS perference
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        "black-alpha-50": "rgba(0,0,0,0.5)",
+      },
+    },
   },
   variants: {
     extend: {},

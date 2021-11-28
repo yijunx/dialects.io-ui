@@ -62,20 +62,31 @@ export const loginWithGoogle = (id_token, setUser, setBackendMessage) => {
         setUser({
           id: response.data.response.id,
           name: response.data.response.name,
+          // well maybe we only need id id and name in set User?
           login_method: response.data.response.login_method,
         });
-        console.log("logged in");
+        setUser({
+          id: response.data.response.id,
+          name: response.data.response.name,
+          login_method: response.data.response.login_method,
+          email_verified: response.data.response.email_verified,
+          admin_info: response.data.response.admin_info,
+        });
         // write to localstorage
         window.localStorage.setItem("id", response.data.response.id);
         window.localStorage.setItem("name", response.data.response.name);
         window.localStorage.setItem(
+          "email_verified",
+          response.data.response.email_verified
+        );
+        window.localStorage.setItem(
           "login_method",
           response.data.response.login_method
         );
-        setBackendMessage({
-          success: true,
-          message: "",
-        });
+        window.localStorage.setItem(
+          "admin_info",
+          JSON.stringify(response.data.response.admin_info)
+        );
       } else {
         console.log("dtail not match");
         setBackendMessage({
@@ -226,20 +237,28 @@ export const login = (details, setUser, setBackendMessage) => {
         },
       })
       .then((response) => {
-        console.log(response);
         if (response.data.success) {
           setUser({
             id: response.data.response.id,
             name: response.data.response.name,
             login_method: response.data.response.login_method,
+            email_verified: response.data.response.email_verified,
+            admin_info: response.data.response.admin_info,
           });
-          console.log("yeah forget is successful");
           // write to localstorage
           window.localStorage.setItem("id", response.data.response.id);
           window.localStorage.setItem("name", response.data.response.name);
           window.localStorage.setItem(
+            "email_verified",
+            response.data.response.email_verified
+          );
+          window.localStorage.setItem(
             "login_method",
             response.data.response.login_method
+          );
+          window.localStorage.setItem(
+            "admin_info",
+            JSON.stringify(response.data.response.admin_info)
           );
           setBackendMessage({
             success: true,
@@ -247,7 +266,7 @@ export const login = (details, setUser, setBackendMessage) => {
           });
         } else {
           setBackendMessage({
-            success: false,
+            success: response.data.success,
             message: response.data.message,
           });
         }
@@ -256,7 +275,7 @@ export const login = (details, setUser, setBackendMessage) => {
         // console.log(e.response.status);
         // console.log(e.response.data.message);
         setBackendMessage({
-          success: e.response.data.message,
+          success: e.response.data.success,
           message: e.response.data.message,
         });
       });
@@ -277,6 +296,8 @@ export const logout = (setUser) => {
   window.localStorage.removeItem("id");
   window.localStorage.removeItem("name");
   window.localStorage.removeItem("login_method");
+  window.localStorage.removeItem("email_verified");
+  window.localStorage.removeItem("admin_info");
 };
 
 export const getCurrentUser = () => {
@@ -284,7 +305,9 @@ export const getCurrentUser = () => {
     return {
       id: window.localStorage.getItem("id"),
       name: window.localStorage.getItem("name"),
+      email_verified: window.localStorage.getItem("email_verified"),
       login_method: window.localStorage.getItem("login_method"),
+      admin_info: JSON.parse(window.localStorage.getItem("admin_info")),
     };
   } else {
     return null;
