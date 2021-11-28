@@ -5,7 +5,6 @@ import { UserContext } from "../UserContext";
 
 function LoginMenu() {
   const { setUser } = useContext(UserContext);
-  console.log("this is login menu");
   const [backendMessage, setBackendMessage] = useState({
     success: false,
     message: "",
