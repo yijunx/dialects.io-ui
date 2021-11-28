@@ -260,10 +260,12 @@ export const login = (details, setUser, setBackendMessage) => {
             "admin_info",
             JSON.stringify(response.data.response.admin_info)
           );
-          setBackendMessage({
-            success: true,
-            message: "",
-          });
+
+          // no need to do this beause the element will be unmounted
+          // setBackendMessage({
+          //   success: true,
+          //   message: "",
+          // });
           // closeMenu();
         } else {
           setBackendMessage({
