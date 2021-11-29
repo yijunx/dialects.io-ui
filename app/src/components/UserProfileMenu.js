@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { patchUserDetail } from "../utils/UserUtils";
 
 function UserProfileMenu({ userForShow, user, setUser }) {
+  console.log(userForShow);
   const [backendMessage, setBackendMessage] = useState({
     success: false,
     message: "",
@@ -20,6 +21,8 @@ function UserProfileMenu({ userForShow, user, setUser }) {
       });
     } else {
       if (user.id === userForShow.id) {
+        // user is from the local storage
+        // userForShow is from the apicall with user id
         patchUserDetail(userForShow.id, details, setBackendMessage, setUser);
       } else {
         setBackendMessage({

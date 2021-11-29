@@ -21,11 +21,11 @@ function App() {
   // use state..
   const [user, setUser] = useState(current_user);
   return (
-    <div className="relative pb-10 min-h-screen">
+    <div className="flex flex-col h-screen">
       <UserContext.Provider value={{ user, setUser }}>
         <Router>
-          <Header />
-          <div className="p-3">
+          <Header className=""></Header>
+          <div className="flex-1 overflow-y-auto p-3">
             <Switch>
               <Route exact path="/">
                 <Home />
@@ -41,7 +41,7 @@ function App() {
               </Route>
             </Switch>
           </div>
-          <Footer />
+          <Footer className=""></Footer>
         </Router>
       </UserContext.Provider>
     </div>

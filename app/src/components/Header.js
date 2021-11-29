@@ -10,7 +10,7 @@ function Header() {
   const { user } = useContext(UserContext);
 
   return (
-    <header className="bg-green-100 p-2 flex justify-between items-center h-10">
+    <header className="bg-green-100 p-2 flex justify-between buttom-0 w-full items-center h-10">
       <div>
         <Link to="/" className="text-blue-500">
           一个方言的网站
