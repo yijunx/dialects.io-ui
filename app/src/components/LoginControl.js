@@ -37,7 +37,7 @@ function LoginControl() {
             item && (
               <animated.div
                 style={styles}
-                className="bg-black-alpha-50 fixed top-0 left-0 w-full h-full z-50"
+                className="fixed top-0 left-0 w-full h-full z-50"
                 onClick={() => setLoginMenu(false)}
               ></animated.div>
             )
@@ -47,7 +47,7 @@ function LoginControl() {
             item && (
               <animated.div
                 style={styles}
-                className="fixed bg-green-100 top-10 right-0 w-60 z-50 shadow p-3 m-2 rounded-md"
+                className="fixed bg-green-100 top-10 right-0 w-60 z-50 shadow-2xl p-3 m-2 rounded-md"
               >
                 <LoginMenu
                 // closeMenu={() => setLoginMenu(false)}
