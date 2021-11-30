@@ -41,7 +41,7 @@ function NavBarControl() {
             item && (
               <animated.div
                 style={styles}
-                className="fixed bg-green-100 top-10 left-0 md:w-1/2 z-50 shadow-2xl p-3 m-2 rounded-md"
+                className="fixed bg-green-100 top-10 left-0 md:w-60 z-50 shadow-2xl p-3 m-2 rounded-md"
               >
                 <NavBar closeMenu={() => setShowNavBar(false)}></NavBar>
               </animated.div>
