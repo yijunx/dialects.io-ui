@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import LoginControl from "./LoginControl";
 import LogoutControl from "./LogoutControl";
+import NavBarControl from "./NavBarControl";
 import UserProfileControl from "./UserProfileControl";
 import RegisterControl from "./RegisterControl";
 import { UserContext } from "../UserContext";
@@ -12,9 +13,12 @@ function Header() {
   return (
     <header className="bg-green-100 p-2 flex justify-between buttom-0 w-full items-center h-10">
       <div>
-        <Link to="/" className="text-blue-500">
-          一个方言的网站
-        </Link>
+        <div className="flex inline-block">
+          <NavBarControl></NavBarControl>
+          <Link to="/" className="text-gray-500 font-bold">
+            一个方言的网站
+          </Link>
+        </div>
       </div>
 
       <div>

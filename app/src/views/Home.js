@@ -1,5 +1,4 @@
 import "../App.css";
-import NavBar from "../components/NavBar";
 // import Product from "../components/Product";
 // import products from "../data/products.json";
 
@@ -45,6 +44,13 @@ function Home() {
           对于已经产生的词条的各个内容，用户都可以提交新的版本。用户可以给觉得最恰当的版本投票。
           默认显示的版本会是投票最多的版本。
           如果提交新的版本太麻烦，用户也可以对内容提出建议，等待原内容提交者采纳并且修改。
+        </p>
+        <br />
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt in
+          repellat obcaecati incidunt ratione dolore, ut harum, aliquid dicta
+          animi fugiat consequatur suscipit, est dignissimos nulla quod id quae!
+          Odio!
         </p>
       </div>
     </div>

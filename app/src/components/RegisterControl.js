@@ -23,7 +23,7 @@ function RegisterControl() {
     <nav>
       <span className="text-xl">
         <button
-          className="border text-sm text-gray-500 bg-white p-1 rounded mr-2"
+          className="font-bold text-sm text-gray-500 bg-white p-1 rounded mr-2"
           onClick={() => setRegisterMenu(!showRegisterMenu)}
         >
           注册

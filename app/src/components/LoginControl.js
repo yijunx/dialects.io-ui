@@ -27,7 +27,7 @@ function LoginControl() {
           onClick={() => setLoginMenu(!showLoginMenu)}
         /> */}
         <button
-          className="border text-sm text-gray-500 bg-white p-1 rounded"
+          className="font-bold text-sm text-gray-500 bg-white p-1 rounded"
           onClick={() => setLoginMenu(!showLoginMenu)}
         >
           登陆
