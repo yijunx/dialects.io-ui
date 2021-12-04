@@ -6,6 +6,8 @@ function SearchBox() {
   // title: Optional[str]
   // dialect: Optional[DialectEnum]
 
+  const wordSearchHandler = (e) => {};
+
   // use a AxiosGet to get the avaible dialects
   const [searchTerm, setSearchTerm] = useState({
     title: "",

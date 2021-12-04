@@ -28,7 +28,7 @@ function NavBar(props) {
         <ul>
           <li>
             <Link
-              to="/"
+              to="/words"
               className="text-gray-500 p-1 block text-base text-center bg-gray-100 rounded"
               onClick={props.closeMenu}
             >
@@ -37,7 +37,7 @@ function NavBar(props) {
           </li>
           <li>
             <Link
-              to="/words"
+              to="/"
               className="text-gray-500 p-1 block text-base text-center bg-gray-100 rounded mt-2"
               onClick={props.closeMenu}
             >
@@ -46,7 +46,7 @@ function NavBar(props) {
           </li>
           <li>
             <Link
-              to="/words"
+              to="/support"
               className="text-gray-500 p-1 block text-base text-center bg-gray-100 rounded mt-2"
               onClick={props.closeMenu}
             >
