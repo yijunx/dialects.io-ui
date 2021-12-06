@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./views/Home";
+import Words from "./views/Words";
 import EmailVerification from "./views/EmailVerification";
 import ResetPassword from "./views/ResetPassword";
 import UserProfile from "./views/UserProfile";
@@ -27,6 +28,9 @@ function App() {
           <Header className=""></Header>
           <div className="flex-1 overflow-y-auto p-3">
             <Switch>
+              <Route exact path="/words">
+                <Words />
+              </Route>
               <Route exact path="/">
                 <Home />
               </Route>

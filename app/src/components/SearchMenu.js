@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 
-function SearchBox() {
+function SearchMenu({ title, tag, dialect }) {
   // class WordQuery(QueryPagination):
   // tag: Optional[str]
   // title: Optional[str]
   // dialect: Optional[DialectEnum]
-
-  const wordSearchHandler = (e) => {};
 
   // use a AxiosGet to get the avaible dialects
   const [searchTerm, setSearchTerm] = useState({
@@ -15,12 +13,14 @@ function SearchBox() {
     dialect: "",
   });
 
+  const wordSearchHandler = (e) => {};
+
   return (
     <div>
-      i am a search box
+      i am a search menu :title: tag: dialect: (dropdown)
       <form action=""></form>
     </div>
   );
 }
 
-export default SearchBox;
+export default SearchMenu;

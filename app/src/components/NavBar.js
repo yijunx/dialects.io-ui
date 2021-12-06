@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SearchBox from "./SearchBox";
+import SearchMenu from "./SearchMenu";
 
 function NavBar(props) {
   // this nav bar will have 3 sections
@@ -56,7 +56,7 @@ function NavBar(props) {
         </ul>
       </div>
       <div className="border-1 bg-white w-full shadow-sm rounded-md p-2 mb-2">
-        <SearchBox></SearchBox>
+        <SearchMenu></SearchMenu>
       </div>
       <div className="border-1 bg-white w-full shadow-sm rounded-md p-2">
         i am admin function like manage users and words
