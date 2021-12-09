@@ -28,7 +28,7 @@ function App() {
           <Header className=""></Header>
           <div className="flex-1 overflow-y-auto p-3">
             <Switch>
-              <Route exact path="/words">
+              <Route exact path="/words?page=1&size=5">
                 <Words />
               </Route>
               <Route exact path="/">
