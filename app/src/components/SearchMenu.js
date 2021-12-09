@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 
-function SearchMenu({ wordQuery, setWordQuery }) {
+function SearchMenu({ currentWordQuery }) {
   // class WordQuery(QueryPagination):
   // tag: Optional[str]
   // title: Optional[str]
   // dialect: Optional[DialectEnum]
 
   // use a AxiosGet to get the avaible dialects
-
-  const wordSearchHandler = (e) => {};
+  const [wordQuery, setWordQuery] = useState(currentWordQuery);
 
   return (
     <div>

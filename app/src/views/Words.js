@@ -30,19 +30,19 @@ function getQueryString(wordQuery) {
 function Words() {
   let query = useQuery();
   // figure out the url string
-  const [wordQuery, setWordQuery] = useState({
+  const currentWordQuery = {
     title: query.get("title"),
     tag: query.get("tag"),
     dialect: query.get("dialect"),
     page: query.get("page") || 1,
     size: query.get("size") || 5,
-  });
+  };
 
   let wordsContent = null;
 
   const url = `${
     process.env.REACT_APP_API_BASE_URL
-  }/public/words${getQueryString(wordQuery)}`;
+  }/public/words${getQueryString(currentWordQuery)}`;
 
   let wordsPublicGet = useAxiosGet(url);
 
@@ -70,10 +70,7 @@ function Words() {
     <div className="md:w-1/2 mx-auto bg-green-50 p-4 rounded-lg text-gray-600">
       <div className="flex bg-white w-full mb-5 shadow-sm rounded-lg">
         <div className="w-10/12 p-2">
-          <SearchMenu
-            wordQuery={wordQuery}
-            setWordQuery={setWordQuery}
-          ></SearchMenu>
+          <SearchMenu currentWordQuery={currentWordQuery}></SearchMenu>
         </div>
         <div className="w-2/12">add new entry button</div>
       </div>
