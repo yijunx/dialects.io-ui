@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useAxiosGet } from "../utils/HttpRequest";
 import { UserContext } from "../UserContext";
 import SearchMenu from "../components/SearchMenu";
+import WordListWithPaging from "../components/WordListWithPaging";
 
 // need to use  params
 function useQuery() {
@@ -55,7 +56,12 @@ function Words() {
   }
 
   if (wordsPublicGet.data) {
-    wordsContent = JSON.stringify(wordsPublicGet.data.response);
+    // wordsContent = JSON.stringify(wordsPublicGet.data.response);
+    wordsContent = (
+      <WordListWithPaging
+        wordsWithPaging={wordsPublicGet.data.response}
+      ></WordListWithPaging>
+    );
   }
 
   // console.log(query.get("token"));
