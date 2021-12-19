@@ -3,7 +3,7 @@ import { useAxiosGet } from "../utils/HttpRequest";
 import { Link } from "react-router-dom";
 
 function getQueryString(wordQuery) {
-  let queryString = `?page=${wordQuery.page}&size=${wordQuery.size}`;
+  let queryString = `?page=1&size=5`;
 
   if (wordQuery.title) {
     queryString = queryString + `&title=${wordQuery.title}`;
@@ -29,7 +29,7 @@ function Menu({ dialects, currentWordQuery, closeMenu }) {
         <div className="form-inner">
           <div className="form-group">
             <label htmlFor="title" className="text-gray-500 text-sm">
-              关键词
+              关键词（此条标题含有）
               <input
                 type="text"
                 name="title"
@@ -43,7 +43,7 @@ function Menu({ dialects, currentWordQuery, closeMenu }) {
             </label>
 
             <label htmlFor="tag" className="text-gray-500 text-sm">
-              标签
+              标签（等于词条标签之一）
               <input
                 type="text"
                 name="tag"
