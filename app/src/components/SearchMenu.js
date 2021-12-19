@@ -1,6 +1,5 @@
 import React from "react";
 import WordSearchControl from "./WordSearchControl";
-import { getDialects } from "../utils/WordUtils";
 
 function SearchMenu({ currentWordQuery }) {
   // class WordQuery(QueryPagination):
@@ -17,9 +16,6 @@ function SearchMenu({ currentWordQuery }) {
   let queryPart = "";
 
   let hasQuery = false;
-
-  const dialects = getDialects();
-  console.log(dialects);
 
   if (currentWordQuery.title) {
     titlePart = (
