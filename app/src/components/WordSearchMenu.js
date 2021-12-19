@@ -9,6 +9,9 @@ function WordSearchMenu({ currentWordQuery }) {
   // use a AxiosGet to get the avaible dialects
   const [wordQuery, setWordQuery] = useState(currentWordQuery);
 
+  // get the available dialects from backend
+  // diallects is an array
+
   return (
     <div>
       <form>
