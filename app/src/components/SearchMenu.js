@@ -12,6 +12,9 @@ function SearchMenu({ currentWordQuery }) {
   let titlePart = "";
   let tagPart = "";
   let dialectPart = "";
+  let queryPart = "";
+
+  let hasQuery = false;
 
   if (wordQuery.title) {
     titlePart = (
@@ -19,6 +22,7 @@ function SearchMenu({ currentWordQuery }) {
         title: {wordQuery.title}
       </div>
     );
+    hasQuery = true;
   }
   console.log(wordQuery);
   if (wordQuery.tag) {
@@ -27,6 +31,7 @@ function SearchMenu({ currentWordQuery }) {
         tag: {wordQuery.tag}
       </div>
     );
+    hasQuery = true;
   }
   if (wordQuery.dialect) {
     dialectPart = (
@@ -34,11 +39,30 @@ function SearchMenu({ currentWordQuery }) {
         dialect: {wordQuery.dialect}
       </div>
     );
+    hasQuery = true;
+  }
+
+  if (hasQuery) {
+    queryPart = (
+      <div className="flex inline-block">
+        search_button {titlePart} {tagPart} {dialectPart}
+      </div>
+    );
+  } else {
+    const nothingToSearch = (
+      <div className="m-1 text-gray-500 rounded-lg bg-green-100 max-w-max text-center px-2">
+        nothing to search
+      </div>
+    );
+    queryPart = (
+      <div className="flex inline-block">search_button {nothingToSearch}</div>
+    );
   }
 
   return (
-    <div className="flex">
-      {titlePart} {tagPart} {dialectPart}
+    <div className="flex justify-between items-center w-full">
+      {queryPart}
+      <div>add_button</div>
     </div>
   );
 }

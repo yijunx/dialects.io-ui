@@ -75,10 +75,7 @@ function Words() {
   return (
     <div className="md:w-1/2 mx-auto bg-green-50 p-4 rounded-lg text-gray-600">
       <div className="flex bg-white w-full mb-5 shadow-sm rounded-lg">
-        <div className="w-10/12 p-2">
-          <SearchMenu currentWordQuery={currentWordQuery}></SearchMenu>
-        </div>
-        <div className="w-2/12">add new entry button</div>
+        <SearchMenu currentWordQuery={currentWordQuery}></SearchMenu>
       </div>
       <div>{wordsContent}</div>
     </div>
