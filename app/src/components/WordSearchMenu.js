@@ -24,7 +24,7 @@ function WordSearchMenu({ currentWordQuery }) {
               onChange={(e) =>
                 setWordQuery({ ...wordQuery, title: e.target.value })
               }
-              value={wordQuery.title}
+              value={wordQuery.title || ""}
               className="border w-full p-1 text-sm rounded h-7"
             />
             <label htmlFor="tag" className="">
@@ -37,7 +37,7 @@ function WordSearchMenu({ currentWordQuery }) {
               onChange={(e) =>
                 setWordQuery({ ...wordQuery, tag: e.target.value })
               }
-              value={wordQuery.tag}
+              value={wordQuery.tag || ""}
               className="border w-full p-1 text-sm rounded h-7"
             />
             <label htmlFor="dialect" className="">
@@ -50,7 +50,7 @@ function WordSearchMenu({ currentWordQuery }) {
               onChange={(e) =>
                 setWordQuery({ ...wordQuery, dialect: e.target.value })
               }
-              value={wordQuery.dialect}
+              value={wordQuery.dialect || ""}
               className="border w-full p-1 text-sm rounded h-7"
             />
           </div>

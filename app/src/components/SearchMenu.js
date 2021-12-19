@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import WordSearchControl from "./WordSearchControl";
 
 function SearchMenu({ currentWordQuery }) {
   // class WordQuery(QueryPagination):
@@ -7,7 +8,7 @@ function SearchMenu({ currentWordQuery }) {
   // dialect: Optional[DialectEnum]
 
   // use a AxiosGet to get the avaible dialects
-  const [wordQuery, setWordQuery] = useState(currentWordQuery);
+  // const [wordQuery, setWordQuery] = useState(currentWordQuery);
 
   let titlePart = "";
   let tagPart = "";
@@ -16,27 +17,26 @@ function SearchMenu({ currentWordQuery }) {
 
   let hasQuery = false;
 
-  if (wordQuery.title) {
+  if (currentWordQuery.title) {
     titlePart = (
       <div className="m-1 text-gray-500 rounded-lg bg-green-100 max-w-max text-center px-2">
-        title: {wordQuery.title}
+        title: {currentWordQuery.title}
       </div>
     );
     hasQuery = true;
   }
-  console.log(wordQuery);
-  if (wordQuery.tag) {
+  if (currentWordQuery.tag) {
     tagPart = (
       <div className="m-1 text-gray-500 rounded-lg bg-green-100 max-w-max text-center px-2">
-        tag: {wordQuery.tag}
+        tag: {currentWordQuery.tag}
       </div>
     );
     hasQuery = true;
   }
-  if (wordQuery.dialect) {
+  if (currentWordQuery.dialect) {
     dialectPart = (
       <div className="m-1 text-gray-500 rounded-lg bg-green-100 max-w-max text-center px-2">
-        dialect: {wordQuery.dialect}
+        dialect: {currentWordQuery.dialect}
       </div>
     );
     hasQuery = true;
@@ -45,17 +45,25 @@ function SearchMenu({ currentWordQuery }) {
   if (hasQuery) {
     queryPart = (
       <div className="flex inline-block">
-        search_button {titlePart} {tagPart} {dialectPart}
+        <WordSearchControl
+          currentWordQuery={currentWordQuery}
+        ></WordSearchControl>
+        {titlePart} {tagPart} {dialectPart}
       </div>
     );
   } else {
     const nothingToSearch = (
       <div className="m-1 text-gray-500 rounded-lg bg-green-100 max-w-max text-center px-2">
-        nothing to search
+        nothing to search for now
       </div>
     );
     queryPart = (
-      <div className="flex inline-block">search_button {nothingToSearch}</div>
+      <div className="flex inline-block">
+        <WordSearchControl
+          currentWordQuery={currentWordQuery}
+        ></WordSearchControl>
+        {nothingToSearch}
+      </div>
     );
   }
 
