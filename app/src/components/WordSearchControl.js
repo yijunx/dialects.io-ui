@@ -46,7 +46,7 @@ function WordSearchControl({ currentWordQuery }) {
               >
                 <WordSearchMenu
                   currentWordQuery={currentWordQuery}
-                  // closeMenu={() => setLoginMenu(false)}
+                  closeMenu={() => setMenu(false)}
                   // setUser={setUser}
                 ></WordSearchMenu>
               </animated.div>

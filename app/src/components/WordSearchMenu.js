@@ -1,72 +1,95 @@
 import React, { useState } from "react";
 import { useAxiosGet } from "../utils/HttpRequest";
+import { Link } from "react-router-dom";
 
-function Menu({ dialects, currentWordQuery }) {
+function getQueryString(wordQuery) {
+  let queryString = `?page=${wordQuery.page}&size=${wordQuery.size}`;
+
+  if (wordQuery.title) {
+    queryString = queryString + `&title=${wordQuery.title}`;
+  }
+
+  if (wordQuery.tag) {
+    queryString = queryString + `&tag=${wordQuery.tag}`;
+  }
+
+  if (wordQuery.dialect) {
+    queryString = queryString + `&dialect=${wordQuery.dialect}`;
+  }
+
+  return queryString;
+}
+
+function Menu({ dialects, currentWordQuery, closeMenu }) {
   const [wordQuery, setWordQuery] = useState(currentWordQuery);
-  console.log(dialects);
+
   return (
-    <form>
-      <div className="form-inner">
-        <div className="form-group">
-          <label htmlFor="title" className="">
-            guan jian ci
-          </label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            onChange={(e) =>
-              setWordQuery({ ...wordQuery, title: e.target.value })
-            }
-            value={wordQuery.title || ""}
-            className="border w-full p-1 text-sm rounded h-7"
-          />
-          <label htmlFor="tag" className="">
-            tag
-          </label>
-          <input
-            type="text"
-            name="tag"
-            id="tag"
-            onChange={(e) =>
-              setWordQuery({ ...wordQuery, tag: e.target.value })
-            }
-            value={wordQuery.tag || ""}
-            className="border w-full p-1 text-sm rounded h-7"
-          />
-          <label htmlFor="dialect" className="">
-            fang yan
-          </label>
-          <select
-            name="dialect"
-            id="dialect"
-            onChange={(e) =>
-              setWordQuery({ ...wordQuery, dialect: e.target.value })
-            }
-          >
-            {dialects.map((d) => (
-              <option value={d.name} key={d.id}>
-                {d.name}
-              </option>
-            ))}
-          </select>
-          {/* <input
-            type="text"
-            name="dialect"
-            id="dialect"
-            onChange={(e) =>
-              setWordQuery({ ...wordQuery, dialect: e.target.value })
-            }
-            value={wordQuery.dialect || ""}
-            className="border w-full p-1 text-sm rounded h-7"
-          /> */}
+    <div>
+      <form>
+        <div className="form-inner">
+          <div className="form-group">
+            <label htmlFor="title" className="text-gray-500 text-sm">
+              关键词
+              <input
+                type="text"
+                name="title"
+                id="title"
+                onChange={(e) =>
+                  setWordQuery({ ...wordQuery, title: e.target.value })
+                }
+                value={wordQuery.title || ""}
+                className="border w-full p-1 text-sm rounded h-7"
+              />
+            </label>
+
+            <label htmlFor="tag" className="text-gray-500 text-sm">
+              标签
+              <input
+                type="text"
+                name="tag"
+                id="tag"
+                onChange={(e) =>
+                  setWordQuery({ ...wordQuery, tag: e.target.value })
+                }
+                value={wordQuery.tag || ""}
+                className="border w-full p-1 text-sm rounded h-7"
+              />
+            </label>
+
+            <label htmlFor="dialect" className="text-gray-500 text-sm">
+              方言
+              <select
+                name="dialect"
+                id="dialect"
+                onChange={(e) =>
+                  setWordQuery({ ...wordQuery, dialect: e.target.value })
+                }
+                className="border w-full p-1 text-sm rounded h-7"
+              >
+                {dialects.map((d) => (
+                  <option value={d.name} key={d.id}>
+                    {d.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
         </div>
+      </form>
+      <div>
+        <Link
+          to={"/words" + getQueryString(wordQuery)}
+          className="text-gray-500 mt-2 p-1 block text-sm text-center bg-gray-100 rounded"
+          onClick={closeMenu}
+        >
+          搜索
+        </Link>
       </div>
-    </form>
+    </div>
   );
 }
 
-function WordSearchMenu({ currentWordQuery }) {
+function WordSearchMenu({ currentWordQuery, closeMenu }) {
   // class WordQuery(QueryPagination):
   // tag: Optional[str]
   // title: Optional[str]
@@ -97,11 +120,16 @@ function WordSearchMenu({ currentWordQuery }) {
       <Menu
         dialects={dialectsGet.data.response}
         currentWordQuery={currentWordQuery}
+        closeMenu={closeMenu}
       ></Menu>
     );
   }
 
-  return <div>{formContent}</div>;
+  return (
+    <div className="border-1 bg-white w-full shadow-sm rounded-md p-2 mb-2">
+      {formContent}
+    </div>
+  );
 }
 
 export default WordSearchMenu;
