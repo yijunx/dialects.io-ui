@@ -19,16 +19,16 @@ function SearchMenu({ currentWordQuery }) {
 
   if (currentWordQuery.title) {
     titlePart = (
-      <div className="m-1 text-gray-500 rounded-lg bg-green-100 max-w-max text-center px-2">
-        title: {currentWordQuery.title}
+      <div className="m-1 text-gray-500 rounded-lg bg-red-100 max-w-max text-center px-2">
+        {currentWordQuery.title}
       </div>
     );
     hasQuery = true;
   }
   if (currentWordQuery.tag) {
     tagPart = (
-      <div className="m-1 text-gray-500 rounded-lg bg-green-100 max-w-max text-center px-2">
-        tag: {currentWordQuery.tag}
+      <div className="m-1 text-gray-500 rounded-lg bg-blue-100 max-w-max text-center px-2">
+        {currentWordQuery.tag}
       </div>
     );
     hasQuery = true;
@@ -36,7 +36,7 @@ function SearchMenu({ currentWordQuery }) {
   if (currentWordQuery.dialect) {
     dialectPart = (
       <div className="m-1 text-gray-500 rounded-lg bg-green-100 max-w-max text-center px-2">
-        dialect: {currentWordQuery.dialect}
+        {currentWordQuery.dialect}
       </div>
     );
     hasQuery = true;
@@ -54,7 +54,7 @@ function SearchMenu({ currentWordQuery }) {
   } else {
     const nothingToSearch = (
       <div className="m-1 text-gray-500 rounded-lg bg-green-100 max-w-max text-center px-2">
-        nothing to search for now
+        {"<- 点这里搜索"}
       </div>
     );
     queryPart = (
@@ -70,7 +70,7 @@ function SearchMenu({ currentWordQuery }) {
   return (
     <div className="flex justify-between items-center w-full">
       {queryPart}
-      <div>add_button</div>
+      <div>+</div>
     </div>
   );
 }

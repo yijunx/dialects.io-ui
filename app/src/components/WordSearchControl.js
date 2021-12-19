@@ -25,7 +25,7 @@ function WordSearchControl({ currentWordQuery }) {
         <FontAwesomeIcon
           icon={faSearch}
           onClick={() => setMenu(!showMenu)}
-          className="m-1"
+          className="m-1 pt-1"
         />
         {maskTransitions(
           (styles, item) =>

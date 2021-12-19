@@ -65,6 +65,7 @@ function Menu({ dialects, currentWordQuery, closeMenu }) {
                   setWordQuery({ ...wordQuery, dialect: e.target.value })
                 }
                 className="border w-full p-1 text-sm rounded h-7"
+                value={wordQuery.dialect || ""}
               >
                 {dialects.map((d) => (
                   <option value={d.name} key={d.id}>
