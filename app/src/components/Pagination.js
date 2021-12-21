@@ -7,7 +7,6 @@ function getQueryString(query, pageDelta) {
   query = Object.fromEntries(
     Object.entries(query).filter(([_, v]) => v != null)
   );
-  console.log(query);
   let queryString = Object.keys(query)
     .map((key) => {
       let x = "";
