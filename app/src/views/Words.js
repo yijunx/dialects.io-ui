@@ -36,7 +36,7 @@ function Words() {
     tag: query.get("tag"),
     dialect: query.get("dialect"),
     page: query.get("page") || 1,
-    size: query.get("size") || 5,
+    size: query.get("size") || 2,
   };
 
   let wordsContent = null;
@@ -60,6 +60,7 @@ function Words() {
     wordsContent = (
       <WordListWithPaging
         wordsWithPaging={wordsPublicGet.data.response}
+        currentWordQuery={currentWordQuery}
       ></WordListWithPaging>
     );
   }
