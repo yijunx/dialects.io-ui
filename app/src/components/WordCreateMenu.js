@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Menu({ dialects, closeMenu }) {
   const [wordCreate, setWordCreate] = useState({
     title: null,
-    tags: null,
+    tags: [],
     explanation: null,
     usage: null,
     pronunciation: null,
@@ -29,7 +29,10 @@ function Menu({ dialects, closeMenu }) {
       <form onSubmit={wordCreateHandler}>
         <div className="form-inner">
           <div className="form-group">
-            <label htmlFor="title" className="text-gray-500 text-sm">
+            <label
+              htmlFor="title"
+              className="text-gray-500 text-sm font-semibold"
+            >
               标题
               <input
                 type="text"
@@ -43,21 +46,30 @@ function Menu({ dialects, closeMenu }) {
               />
             </label>
 
-            <label htmlFor="tags" className="text-gray-500 text-sm">
-              标签(这个方言普通话里的相关词，以便搜索)，请用逗号隔开多个标签
+            <label
+              htmlFor="tags"
+              className="text-gray-500 text-sm font-semibold"
+            >
+              标签(这个方言普通话里的相关词，以便搜索)，请用空格隔开多个标签
               <input
                 type="text"
                 name="tags"
                 id="tags"
                 onChange={(e) =>
-                  setWordCreate({ ...wordCreate, tags: e.target.value })
+                  setWordCreate({
+                    ...wordCreate,
+                    tags: e.target.value.split(" "),
+                  })
                 }
-                value={wordCreate.tags || ""}
+                value={wordCreate.tags.join(" ") || ""}
                 className="border w-full p-1 text-sm rounded h-7"
               />
             </label>
 
-            <label htmlFor="dialect" className="text-gray-500 text-sm">
+            <label
+              htmlFor="dialect"
+              className="text-gray-500 text-sm font-semibold"
+            >
               方言
               <select
                 name="dialect"
@@ -76,7 +88,10 @@ function Menu({ dialects, closeMenu }) {
               </select>
             </label>
 
-            <label htmlFor="explanation" className="text-gray-500 text-sm">
+            <label
+              htmlFor="explanation"
+              className="text-gray-500 text-sm font-semibold"
+            >
               解释
               <input
                 type="text"
