@@ -4,7 +4,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import WordCreateMenu from "./WordCreateMenu";
 import { useTransition, animated } from "react-spring";
 
-function WordCreateControl({ currentWordQuery }) {
+function WordCreateControl({ user }) {
   const [showMenu, setMenu] = useState(false);
 
   const maskTransitions = useTransition(showMenu, {
@@ -42,13 +42,16 @@ function WordCreateControl({ currentWordQuery }) {
             item && (
               <animated.div
                 style={styles}
-                className="fixed bg-green-100 top-10 left-0 md:w-60 z-50 shadow-2xl p-3 m-2 rounded-md"
+                className="fixed bg-green-100 top-10 right-0 md:w-80 z-50 shadow-2xl p-3 m-2 rounded-md"
               >
-                <WordCreateMenu
-                  currentWordQuery={currentWordQuery}
-                  closeMenu={() => setMenu(false)}
-                  // setUser={setUser}
-                ></WordCreateMenu>
+                {user ? (
+                  <WordCreateMenu
+                    closeMenu={() => setMenu(false)}
+                    // setUser={setUser}
+                  ></WordCreateMenu>
+                ) : (
+                  <div>{"请先登陆 ⬆️"}</div>
+                )}
               </animated.div>
             )
         )}
