@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { useAxiosGet } from "../utils/HttpRequest";
 import { UserContext } from "../UserContext";
@@ -65,6 +65,8 @@ function Words() {
     );
   }
 
+  const { user } = useContext(UserContext);
+
   // console.log(query.get("token"));
   //   const [backendMessage, setBackendMessage] = useState({
   //     success: false,
@@ -76,7 +78,10 @@ function Words() {
   return (
     <div className="md:w-1/2 mx-auto bg-green-50 p-4 rounded-lg text-gray-600">
       <div className="flex bg-white w-full mb-1 shadow-sm rounded-lg">
-        <SearchMenu currentWordQuery={currentWordQuery}></SearchMenu>
+        <SearchMenu
+          currentWordQuery={currentWordQuery}
+          user={user}
+        ></SearchMenu>
       </div>
       <div>{wordsContent}</div>
     </div>

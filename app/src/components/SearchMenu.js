@@ -1,7 +1,8 @@
 import React from "react";
 import WordSearchControl from "./WordSearchControl";
+import WordCreateControl from "./WordCreateControl";
 
-function SearchMenu({ currentWordQuery }) {
+function SearchMenu({ currentWordQuery, user }) {
   // class WordQuery(QueryPagination):
   // tag: Optional[str]
   // title: Optional[str]
@@ -14,6 +15,8 @@ function SearchMenu({ currentWordQuery }) {
   let tagPart = "";
   let dialectPart = "";
   let queryPart = "";
+
+  let currentSearch = "";
 
   let hasQuery = false;
 
@@ -48,13 +51,22 @@ function SearchMenu({ currentWordQuery }) {
         <WordSearchControl
           currentWordQuery={currentWordQuery}
         ></WordSearchControl>
+      </div>
+    );
+    currentSearch = (
+      <div>
         {titlePart} {tagPart} {dialectPart}
       </div>
     );
   } else {
-    const nothingToSearch = (
-      <div className="m-1 text-gray-500 rounded-lg bg-green-100 max-w-max text-center px-2">
-        {"<- 点这里搜索"}
+    currentSearch = (
+      <div className="flex justify-between w-5/6">
+        <div className="m-1 text-gray-400 rounded-lg bg-white max-w-max text-center px-2">
+          {"<- 搜索"}
+        </div>
+        <div className="m-1 text-gray-400 rounded-lg bg-white max-w-max text-center px-2">
+          {"创建 ->"}
+        </div>
       </div>
     );
     queryPart = (
@@ -62,7 +74,6 @@ function SearchMenu({ currentWordQuery }) {
         <WordSearchControl
           currentWordQuery={currentWordQuery}
         ></WordSearchControl>
-        {nothingToSearch}
       </div>
     );
   }
@@ -70,7 +81,8 @@ function SearchMenu({ currentWordQuery }) {
   return (
     <div className="flex justify-between items-center w-full">
       {queryPart}
-      <div>+</div>
+      {currentSearch}
+      <WordCreateControl user={user}></WordCreateControl>
     </div>
   );
 }

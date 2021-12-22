@@ -3,13 +3,6 @@ import Word from "./Word";
 import Pagination from "./Pagination";
 
 function WordListWithPaging({ wordsWithPaging, currentWordQuery }) {
-  // const [content, setContent] = useState(wordsWithPaging);
-  // const [query, setQuery] = useState(wordQuery);
-  const paging = JSON.stringify(wordsWithPaging.paging);
-
-  // need to add next / previous page here
-  // just render the address bar...
-
   return (
     <div className="">
       <div>
