@@ -16,7 +16,10 @@ function Home() {
           这是一个保存方言的网站，因为貌似好像没有一个网络服务试图保存各种方言里面独有的词条，
           甚至找不到一个https的，允许用户贡献的，web2.0时代的网站用于保存方言。
           于是这个网站就出现了。这个网站会提供api服务。
-          <b>请注意这是纯本地测试服务器，任何数据都有可能被清除！</b>
+          <b>
+            请注意这是纯本地测试服务器(所有微服务都跑在MacBook里)，任何数据都有可能被清除！
+            打算在2022Jan搬到AWS或者其他云。
+          </b>
         </p>
         <br />
 
@@ -46,12 +49,6 @@ function Home() {
           如果提交新的版本太麻烦，用户也可以对内容提出建议，等待原内容提交者采纳并且修改。
         </p>
         <br />
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt in
-          repellat obcaecati incidunt ratione dolore, ut harum, aliquid dicta
-          animi fugiat consequatur suscipit, est dignissimos nulla quod id quae!
-          Odio!
-        </p>
       </div>
     </div>
   );
