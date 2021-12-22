@@ -34,7 +34,7 @@ function Menu({ dialects, closeMenu }) {
               htmlFor="title"
               className="text-gray-500 text-sm font-semibold"
             >
-              标题
+              词条
               <input
                 type="text"
                 name="title"
