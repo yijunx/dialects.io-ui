@@ -9,7 +9,7 @@ function Word({ word: { title, explanation, pronunciation, usage, dialect } }) {
         {dialect.substr(0, 100)}
       </div>
       <div className="m-1">意思：{explanation.substr(0, 100)}</div>
-      <div className="m-1">用法：{usage.substr(0, 100)}</div>
+      {usage ? <div className="m-1">用法：{usage.substr(0, 100)}</div> : ""}
     </div>
   );
 }

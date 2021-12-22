@@ -1,27 +1,28 @@
 import React, { useState } from "react";
 import { useAxiosGet } from "../utils/HttpRequest";
+import { addWord } from "../utils/WordUtils";
 import { Link } from "react-router-dom";
 
 function Menu({ dialects, closeMenu }) {
   const [wordCreate, setWordCreate] = useState({
-    title: null,
+    title: "",
     tags: [],
-    explanation: null,
-    usage: null,
-    pronunciation: null,
-    dialect: null,
+    explanation: "",
+    usage: "",
+    pronunciation: "",
+    dialect: "",
   });
 
   const [backendMessage, setBackendMessage] = useState({
     success: false,
-    message: "",
+    message: "请输入所有的加粗的部分",
   });
 
   const wordCreateHandler = (e) => {
     e.preventDefault();
     console.log("things to post over!!!");
     console.log(wordCreate);
-    // login(details, setBackendMessage);
+    addWord(wordCreate, setBackendMessage, closeMenu);
   };
 
   return (
@@ -58,7 +59,7 @@ function Menu({ dialects, closeMenu }) {
                 onChange={(e) =>
                   setWordCreate({
                     ...wordCreate,
-                    tags: e.target.value.split(" "),
+                    tags: e.target.value.trim().split(" "),
                   })
                 }
                 value={wordCreate.tags.join(" ") || ""}
@@ -143,7 +144,9 @@ function Menu({ dialects, closeMenu }) {
             </label>
           </div>
         </div>
-        <div className="text-gray-500 text-sm">{backendMessage.message}</div>
+        <div className="text-gray-500 text-sm pt-2">
+          {backendMessage.message}
+        </div>
         <input
           type="submit"
           value="创建"
