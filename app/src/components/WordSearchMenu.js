@@ -29,7 +29,7 @@ function Menu({ dialects, currentWordQuery, closeMenu }) {
         <div className="form-inner">
           <div className="form-group">
             <label htmlFor="title" className="text-gray-500 text-sm">
-              关键词（此条标题含有）
+              关键词（词条标题含有）
               <input
                 type="text"
                 name="title"
